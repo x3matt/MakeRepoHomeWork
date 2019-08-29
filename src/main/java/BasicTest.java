@@ -18,10 +18,10 @@ public class BasicTest extends FunctionalTest {
 
     String user = "your Email";
     String password = "Your Password";
-    String baseUrl = "https://www.github.com/login";
-    String repoListURL = "https://github.com/x3matt?tab=repositories";
-    String repoName = "MyRepo";
     String userName= "Your nickName";
+    String baseUrl = "https://www.github.com/login";
+    String repoListURL = "https://github.com/"+userName+"?tab=repositories";
+    String repoName = "MyRepo";
     String repoDescr = "Some Valid Description";
 
     //All tests passed
