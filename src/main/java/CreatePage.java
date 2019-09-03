@@ -3,6 +3,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import utils.PageObject;
 
+import java.util.concurrent.TimeUnit;
+
 public class CreatePage extends PageObject {
     @FindBy(css = "#new_repository > div.js-with-permission-fields > button")
     WebElement createRepoButton;
@@ -16,7 +18,8 @@ public class CreatePage extends PageObject {
     public boolean createBtnEnabled(){
         return createRepoButton.isEnabled();
     }
-    public void create(){
+    public void create() throws Exception{
+        TimeUnit.SECONDS.sleep(1);
         createRepoButton.click();
     }
     public String getUserLabel(){

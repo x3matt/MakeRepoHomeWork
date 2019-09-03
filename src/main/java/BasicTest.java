@@ -1,13 +1,15 @@
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import utils.FunctionalTest;
-import java.util.List;
+
+import java.util.concurrent.TimeUnit;
 
 import static junit.framework.TestCase.*;
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BasicTest extends FunctionalTest {
 
     LoginPage loginPage = new LoginPage(driver);
@@ -16,9 +18,9 @@ public class BasicTest extends FunctionalTest {
     RepoListPage repoListPage = new RepoListPage(driver);
     DeletePage deletePage = new DeletePage(driver);
 
-    String user = "your Email";
-    String password = "Your Password";
-    String userName= "Your nickName";
+    String user = "Your email";
+    String password = "your password";
+    String userName= "your username";
     String baseUrl = "https://www.github.com/login";
     String repoListURL = "https://github.com/"+userName+"?tab=repositories";
     String repoName = "MyRepo";
@@ -42,7 +44,7 @@ public class BasicTest extends FunctionalTest {
         assertTrue(driver.findElement(By.cssSelector("body > div.position-relative.js-header-wrapper > header > div.Header-item.position-relative.mr-0.d-none.d-lg-flex > details > summary > img")).isDisplayed());
     }
     @Test
-    public void createRepo(){
+    public void createRepo() throws Exception{
 
        driver.get(baseUrl);
        mainPage = loginPage.login(user,password);
@@ -58,7 +60,7 @@ public class BasicTest extends FunctionalTest {
        driver.get(repoListURL);
 
        driver.get("https://github.com/"+userName+"/"+repoName);
-        deletePage.delete();
+        deletePage.delete(repoName);
         assertTrue(deletePage.buttonIsEnabled());
         deletePage.pressDeleteButton();
     }
